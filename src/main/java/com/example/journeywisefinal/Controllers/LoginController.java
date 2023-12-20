@@ -1,5 +1,6 @@
 package com.example.journeywisefinal.Controllers;
 
+import com.example.journeywisefinal.Services.ServiceUser;
 import com.example.journeywisefinal.Utils.DataSource;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,22 +44,18 @@ public class LoginController {
     }
     public void validateLogin(){
 
-        String verifyLogin = "SELECT count(1) FROM `user` WHERE `email` = '"+emailTextField.getText()+"' AND `password` = '"+passwordTextField.getText()+ "';";
-        try{
-            Statement statement = connection.createStatement();
-            ResultSet queryResult = statement.executeQuery(verifyLogin);
-            while (queryResult.next()){
-                if (queryResult.getInt(1)==1){
-                    loginMessageLabel.setText("Welcome");
+        ServiceUser serviceUser = new ServiceUser();
+        Boolean isLoggedIn = serviceUser.validateLogin(emailTextField.getText(),passwordTextField.getText());
 
-                }
-                else {
-                    loginMessageLabel.setText("Invalid login");
-                }
-            }
+
+        if(isLoggedIn) {
+
+        loginMessageLabel.setText("Welcome");
         }
-        catch (Exception e){
-            e.printStackTrace();
+        else {
+        loginMessageLabel.setText("Invalid login");
         }
+
+
     }
 }

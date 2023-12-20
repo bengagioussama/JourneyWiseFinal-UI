@@ -23,6 +23,26 @@ public class ServiceUser implements IService<User> {
         }
     }
 
+    public boolean validateLogin(String email, String password) {
+        String verifyLogin = "SELECT count(1) FROM `user` WHERE `email` = '"+email+"' AND `password` = '"+password+ "';";
+        try{
+
+            ResultSet queryResult = ste.executeQuery(verifyLogin);
+            while (queryResult.next()){
+                if (queryResult.getInt(1)==1){
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     @Override
     public void add(User u) throws SQLException {
         String sql = "INSERT INTO User (id, name , lastName, email , password) VALUES (NULL, '"+u.getFirstName()+"', '"+u.getLastName()+"', '"+u.getEmail()+"', '"+u.getPwd()+"');  ";
