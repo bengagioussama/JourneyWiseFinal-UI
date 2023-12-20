@@ -1,0 +1,24 @@
+/* styles.css */
+
+.root {
+    -fx-background-color: #14242B;
+}
+
+.label {
+    -fx-text-fill: white;
+    -fx-font-family: 'Bell MT';
+    -fx-font-size: 37.0;
+}
+
+.text-field, .password-field, .button {
+    -jfx-unfocus-color: derive(-fx-control-inner-background, -10%);
+}
+
+.choice-box, .text-area {
+    -fx-control-inner-background: derive(-fx-control-inner-background, -10%);
+}
+
+.button {
+    -fx-background-color: #007BFF;
+    -fx-text-fill: white;
+}

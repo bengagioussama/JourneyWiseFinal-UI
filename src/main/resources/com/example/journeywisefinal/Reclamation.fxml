@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1350.0" style="-fx-background-color: #14242B;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.journeywisefinal.Controllers.ReclamationController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="700.0" prefWidth="1389.0">
+         <children>
+            <Label text="Créer Une Reclamation" textFill="WHITE">
+               <font>
+                  <Font name="Bell MT" size="37.0" />
+               </font>
+               <padding>
+                  <Insets top="50.0" />
+               </padding>
+            </Label>
+            <Label text="Choisissez la réservation que vous souhaitez réclamer." textFill="WHITE">
+               <padding>
+                  <Insets top="50.0" />
+               </padding>
+            </Label>
+            <ChoiceBox fx:id="choiceBox" prefHeight="26.0" prefWidth="357.0" />
+            <Label text="Sujet de Reclamation : " textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="subjectReclamation">
+               <VBox.margin>
+                  <Insets left="500.0" right="500.0" />
+               </VBox.margin>
+            </TextField>
+            <Label layoutX="592.0" layoutY="104.0" text="Déscription du probéleme" textFill="WHITE">
+               <padding>
+                  <Insets top="50.0" />
+               </padding>
+            </Label>
+            <TextArea fx:id="problemDescription" prefHeight="151.0" prefWidth="351.0">
+               <VBox.margin>
+                  <Insets left="500.0" right="500.0" />
+               </VBox.margin>
+            </TextArea>
+            <Button fx:id="btnEnvoyer" mnemonicParsing="false" onMouseClicked="#addReclamation" prefHeight="26.0" prefWidth="350.0" text="Envoyer">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</HBox>
