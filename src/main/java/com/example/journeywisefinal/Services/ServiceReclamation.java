@@ -67,6 +67,7 @@ public class ServiceReclamation implements IService<Reclamation>{
             }
         }
         catch(SQLException ex) {
+            System.out.println("readAll");
             System.out.println(ex);
         }
 

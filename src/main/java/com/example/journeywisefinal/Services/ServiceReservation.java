@@ -1,7 +1,5 @@
 package com.example.journeywisefinal.Services;
 
-
-import com.example.journeywisefinal.Entities.Offres;
 import com.example.journeywisefinal.Entities.Reservation;
 import com.example.journeywisefinal.Utils.DataSource;
 
@@ -28,7 +26,7 @@ public class ServiceReservation implements IService<Reservation> {
             preparedStatement.setDate(1, new java.sql.Date(reservation.getDateDebut().getTime()));
             preparedStatement.setDate(2, new java.sql.Date(reservation.getDateFin().getTime()));
             preparedStatement.setInt(3, reservation.getNombrePassages());
-            preparedStatement.setInt(4, reservation.getOffre().getId_offre());
+            preparedStatement.setInt(4, reservation.getOffre());
             preparedStatement.setInt(5, 0);
 
             int res = preparedStatement.executeUpdate();
@@ -51,8 +49,8 @@ public class ServiceReservation implements IService<Reservation> {
                 preparedStatement.setDate(1, new java.sql.Date(t.getDateDebut().getTime()));
                 preparedStatement.setDate(2, new java.sql.Date(t.getDateFin().getTime()));
                 preparedStatement.setInt(3, t.getNombrePassages());
-                preparedStatement.setInt(4, t.getOffre().getId_offre());
-                preparedStatement.setInt(5, t.getOffre().getId_offre());
+                preparedStatement.setInt(4, t.getOffre());
+                preparedStatement.setInt(5, t.getOffre());
                 preparedStatement.setInt(6, t.getId());
 
                 int res = preparedStatement.executeUpdate();
@@ -83,15 +81,20 @@ public class ServiceReservation implements IService<Reservation> {
     public ArrayList<Reservation> readAll() throws SQLException {
         ArrayList<Reservation>reservations = new ArrayList<>();
         try {
+            System.out.println("REAL ALL HERE");
             ResultSet resultSet = statement.executeQuery("select * from reservations");
             while (resultSet.next()){
-                int id=resultSet.getInt(1);
+                System.out.println("inside the while loop");
+                long id=resultSet.getInt(1);
+                System.out.println("EXCEPTION UNDER");
                 Date dateDebut = resultSet.getDate(2);
                 Date dateFin= resultSet.getDate(3);
                 int nombrePassages = resultSet.getInt(4);
-                Offres offre = (serviceOffre.get(resultSet.getInt(5)));
+                System.out.println("EXCEPTION STILL UNDER");
+                int offre = (serviceOffre.get(resultSet.getInt(5)).getId_offre());
+                System.out.println("EXXXXXXXXXXX");
                 //int id_membre=resultSet.getInt(6);
-                reservations.add(new Reservation(id, dateDebut, dateFin, nombrePassages,offre ));//id_membre));
+                reservations.add(new Reservation((int) id, dateDebut, dateFin, nombrePassages,offre ));//id_membre));
             }
         }catch (SQLException ex){
             System.out.println(ex);
@@ -107,7 +110,7 @@ public class ServiceReservation implements IService<Reservation> {
                 Date dateDebut = resultSet.getDate(2);
                 Date dateFin= resultSet.getDate(3);
                 int nombrePassages = resultSet.getInt(4);
-                Offres offre = (serviceOffre.get(1));
+                int offre = (serviceOffre.get(1).getId_offre());
                 int id_membre=resultSet.getInt(6);
                 reservations.add(new Reservation(id, dateDebut, dateFin, nombrePassages, offre));//serviceOffre.get(id_offre)));//,id_membre));
             }
@@ -126,7 +129,7 @@ public class ServiceReservation implements IService<Reservation> {
                 Date dateDebut = resultSet.getDate(2);
                 Date dateFin = resultSet.getDate(3);
                 int nombrePassages = resultSet.getInt(4);
-                Offres offre = (serviceOffre.get(1));
+                int offre = (serviceOffre.get(1).getId_offre());
                 // User user = resultSet.getInt(6); // a refaire
 
                 return new Reservation(id, dateDebut, dateFin, nombrePassages, offre);//,user);

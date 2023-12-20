@@ -14,4 +14,6 @@ module com.example.journeywisefinal {
     opens com.example.journeywisefinal to javafx.fxml;
     exports com.example.journeywisefinal;
     exports com.example.journeywisefinal.Controllers;
+    opens com.example.journeywisefinal.Controllers to javafx.fxml;
+
 }

@@ -17,6 +17,14 @@ public class Reservation {
         this.offre = offre;
         //  this.user = user;
     }
+
+    public Reservation(Date dateDebut, Date dateFin, int value, int offres) {
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.nombrePassages = value;
+        this.offre = offres;
+    }
+
     public int getId() {
         return id;
     }

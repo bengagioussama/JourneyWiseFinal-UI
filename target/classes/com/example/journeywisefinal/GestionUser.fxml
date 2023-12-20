@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.journeywisefinal.Controllers.GestionUsersController">
+    <children>
+        <TableView fx:id="table" layoutX="33.0" layoutY="113.0" prefHeight="265.0" prefWidth="718.0">
+            <columns>
+                <TableColumn fx:id="idCol" maxWidth="70.0" prefWidth="35.199981689453125" text="ID" />
+                <TableColumn fx:id="firstNameCol" maxWidth="109.60001373291016" prefWidth="109.60001373291016" text="First name" />
+                <TableColumn fx:id="lastNameCol" maxWidth="100.0" prefWidth="100.0" text="Last name" />
+                <TableColumn fx:id="emailCol" maxWidth="201.60003662109375" prefWidth="201.60003662109375" text="Email" />
+                <TableColumn fx:id="passwordCol" maxWidth="252.7999267578125" prefWidth="209.5999755859375" text="Password" />
+                <TableColumn fx:id="roleCol" prefWidth="61.5999755859375" text="Role" />
+            </columns>
+        </TableView>
+        <Label layoutX="48.0" layoutY="26.0" prefHeight="33.0" prefWidth="93.0" text="User">
+            <font>
+                <Font name="System Bold Italic" size="30.0" />
+            </font>
+        </Label>
+        <TextField fx:id="firstNameTxt" layoutX="142.0" layoutY="36.0" prefHeight="26.0" prefWidth="127.0" promptText="First name" />
+        <Button fx:id="btnAdd" layoutX="233.0" layoutY="68.0" mnemonicParsing="false" onAction="#Add" prefHeight="26.0" prefWidth="85.0" text="Add" />
+        <TextField fx:id="lastNameTxt" layoutX="288.0" layoutY="36.0" prefHeight="26.0" prefWidth="127.0" promptText="Last name" />
+        <TextField fx:id="emailTxt" layoutX="434.0" layoutY="36.0" prefHeight="26.0" prefWidth="127.0" promptText="Email" />
+        <Button fx:id="btnUpdate" layoutX="381.0" layoutY="68.0" mnemonicParsing="false" onAction="#Update" prefHeight="26.0" prefWidth="85.0" text="Update" />
+        <Button fx:id="btnDelete" layoutX="526.0" layoutY="68.0" mnemonicParsing="false" onAction="#Delete" prefHeight="26.0" prefWidth="85.0" text="Delete" />
+        <PasswordField fx:id="passwordTxt" layoutX="583.0" layoutY="36.0" promptText="Password" />
+    </children>
+</AnchorPane>

@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class ReservationHomeController {
+public class ReservationController {
     @FXML
     private ListView<Reservation> reservationsListView=new ListView<>();
 
@@ -78,11 +78,10 @@ public class ReservationHomeController {
             java.util.Date dateDebut = new java.util.Date(Date.valueOf(DateDeb.getValue()).getTime());
             java.util.Date dateFin = new java.util.Date(Date.valueOf(DateFin.getValue()).getTime());
 
-            Reservation reservation = new Reservation(Date.valueOf(DateDeb.getValue()),
-                    Date.valueOf(DateFin.getValue()),
+            Reservation reservation = new Reservation(dateDebut,
+                    dateFin,
                     (int) slider.getValue(),
-                    new Offres(1, "Turkey", "Istambul", "xxxx",
-                            "10-09-2023", 1852.8f)
+                    1
             );
             serviceReservation.add(reservation);
             System.out.println("Reservation added successfully.");
@@ -113,8 +112,7 @@ public class ReservationHomeController {
                     reservation = new Reservation(Date.valueOf(DateDeb.getValue()),
                             Date.valueOf(DateFin.getValue()),
                             (int) slider.getValue(),
-                            new Offres(1, "Turkey", "Istambul", "xxxx",
-                                    "10-09-2023", 1852.8f)
+                            1
                     );
 
                     serviceReservation.update(reservation);
@@ -136,7 +134,7 @@ public class ReservationHomeController {
             ArrayList<Reservation> allReservations = serviceReservation.readAll();
             reservationsList.addAll(allReservations.stream().map(
                     reservation -> new Reservation(reservation.getId(),reservation.getDateDebut(),
-                            reservation.getDateFin(),reservation.getNombrePassages(),reservation.getOffre().getId_offre())
+                            reservation.getDateFin(),reservation.getNombrePassages(),reservation.getOffre())
             ).collect(Collectors.toList()));
 
             // Update the ListView with the reservations
