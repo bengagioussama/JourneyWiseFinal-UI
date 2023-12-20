@@ -75,6 +75,8 @@ public class ReservationHomeController {
                 showAlert("Invalid Dates", "Date Debut should be greater than Date Fin.");
                 return;
             }
+            java.util.Date dateDebut = new java.util.Date(Date.valueOf(DateDeb.getValue()).getTime());
+            java.util.Date dateFin = new java.util.Date(Date.valueOf(DateFin.getValue()).getTime());
 
             Reservation reservation = new Reservation(Date.valueOf(DateDeb.getValue()),
                     Date.valueOf(DateFin.getValue()),
