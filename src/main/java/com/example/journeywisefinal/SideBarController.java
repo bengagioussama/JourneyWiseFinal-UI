@@ -43,7 +43,7 @@ public class SideBarController implements Initializable {
     }
 
     public void Reclamation(javafx.scene.input.MouseEvent mouseEvent) {
-        loadPage("Reclamation");
+        loadPage("Reclamation-consult");
     }
 
 

@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Reclamation {
-    private long id;
+    private int id;
     private LocalDate dateReclamation;
     private String objet;
     private String description;
@@ -13,7 +13,7 @@ public class Reclamation {
 
 
     //Constructor for the Admin to update the Reclamation
-    public Reclamation(long id, LocalDate dateReclamation, String objet, String description, Etat etat) {
+    public Reclamation(int id, LocalDate dateReclamation, String objet, String description, Etat etat) {
         this.id = id;
         this.dateReclamation = dateReclamation;
         this.objet = objet;
@@ -21,7 +21,7 @@ public class Reclamation {
         this.etat = etat;
     }
     //Constructor for the User to add a new Reclamation
-    public Reclamation(long id, LocalDate dateReclamation, String objet, String description) {
+    public Reclamation(int id, LocalDate dateReclamation, String objet, String description) {
         this.id = id;
         this.dateReclamation = dateReclamation;
         this.objet = objet;
@@ -41,7 +41,7 @@ public class Reclamation {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

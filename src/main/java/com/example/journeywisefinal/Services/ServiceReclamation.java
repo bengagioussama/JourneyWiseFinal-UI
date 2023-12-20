@@ -49,31 +49,39 @@ public class ServiceReclamation implements IService<Reclamation>{
 
 
     @Override
-    public ArrayList readAll() throws SQLException {
+    public ArrayList<Reclamation> readAll() throws SQLException {
         ArrayList<Reclamation> list = new ArrayList<>();
         try {
             String sql2 = "SELECT * FROM `Reclamation`;";
             ResultSet res = ste.executeQuery(sql2);
 
             while (res.next()) {
-                long id = (res.getLong(1));
-                LocalDate dateReclamation = (res.getDate(2).toLocalDate());
-                String objet = (res.getString(3));
-                String description = (res.getString(4));
-                Etat etat = Etat.valueOf(res.getString(5));
+                int id = res.getInt("id");
+                LocalDate dateReclamation = res.getDate("dateReclamation").toLocalDate();
+                String objet = res.getString("objet");
+                String description = res.getString("description");
 
-                Reclamation r = new Reclamation(id,dateReclamation,objet,description,etat);
+                // Update the line to handle unknown enum values
+                Etat etat;
+                try {
+                    etat = Etat.valueOf(res.getString("etat"));
+                } catch (IllegalArgumentException e) {
+                    // Log a warning or handle the unknown value appropriately
+                    System.out.println("Warning: Unknown Etat value - " + res.getString("etat"));
+                    etat = Etat.PENDING; // Set a default value or handle as needed
+                }
+
+                Reclamation r = new Reclamation(id, dateReclamation, objet, description, etat);
                 list.add(r);
             }
-        }
-        catch(SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println("readAll");
             System.out.println(ex);
         }
 
         return list;
-
     }
+
 
     @Override
     public Reclamation get(int id) throws SQLException {

@@ -7,57 +7,61 @@ import com.example.journeywisefinal.Services.ServiceReclamation;
 import com.example.journeywisefinal.Services.ServiceReservation;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ReclamationConsultController implements Initializable {
 
 
     @FXML
-    public ChoiceBox<String> choiceBox;
+    private TableView<Reclamation> tableView;
 
     @FXML
-    public TextField subjectReclamation;
+    private TableColumn<Reclamation, Integer> idColumn;
 
     @FXML
-    public TextArea problemDescription;
+    private TableColumn<Reclamation, LocalDate> dateColumn;
+
+    @FXML
+    private TableColumn<Reclamation, String> objetColumn;
+
+    @FXML
+    private TableColumn<Reclamation, String> etatColumn;
+
+    @FXML
+    private TableColumn<Reclamation, Void> deleteColumn;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        populateChoiceBox();
-    }
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("dateReclamation"));
+        objetColumn.setCellValueFactory(new PropertyValueFactory<>("objet"));
+        deleteColumn.setCellFactory(col -> new DeleteButtonCell());
 
-    private void populateChoiceBox() {
+        ServiceReclamation listReclamations = new ServiceReclamation();
+        List<Reclamation> reclamations = null;
         try {
-            ServiceReservation sr = new ServiceReservation();
-            ArrayList<Reservation> Reservations = sr.readAll();
-
-            for (Reservation reservation : Reservations) {
-                choiceBox.getItems().add("Réservation Numéro : "+String.valueOf(reservation.getId()));
-            }
+            reclamations = listReclamations.readAll();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        tableView.getItems().addAll(reclamations);
+    }
+
+    @FXML
+    public void navigateToNewReclamation() {
+
     }
 
 
-    public void addReclamation(MouseEvent mouseEvent) {
-        try {
-            LocalDate date = LocalDate. now();
-            Reclamation reclamation = new Reclamation(date, subjectReclamation.getText(),problemDescription.getText() , Etat.PENDING);
-            ServiceReclamation serviceReclamation = new ServiceReclamation();
-            serviceReclamation.add(reclamation);
-        }
-        catch (Exception e) {
-            System.out.println(e);
-        }
-    }
+
 }

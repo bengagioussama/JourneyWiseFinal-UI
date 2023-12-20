@@ -1,7 +1,5 @@
 package com.example.journeywisefinal.Services;
-
 import com.example.journeywisefinal.Entities.User;
-import com.example.journeywisefinal.Services.IService;
 import com.example.journeywisefinal.Utils.DataSource;
 
 import java.sql.Connection;
@@ -86,7 +84,8 @@ public class ServiceUser implements IService<User> {
             System.out.println(ex);
         }
 
-        return list;    }
+        return list;
+    }
 
     @Override
     public User get(int id) throws SQLException {
