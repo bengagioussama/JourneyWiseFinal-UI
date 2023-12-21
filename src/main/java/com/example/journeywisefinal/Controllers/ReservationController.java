@@ -4,6 +4,7 @@ package com.example.journeywisefinal.Controllers;
 import com.example.journeywisefinal.Entities.Offres;
 import com.example.journeywisefinal.Entities.Reservation;
 import com.example.journeywisefinal.HomePage;
+import com.example.journeywisefinal.Services.ServiceOffre;
 import com.example.journeywisefinal.Services.ServiceReservation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,9 +21,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class ReservationController {
     @FXML
@@ -78,10 +79,10 @@ public class ReservationController {
             java.util.Date dateDebut = new java.util.Date(Date.valueOf(DateDeb.getValue()).getTime());
             java.util.Date dateFin = new java.util.Date(Date.valueOf(DateFin.getValue()).getTime());
 
-            Reservation reservation = new Reservation(dateDebut,
-                    dateFin,
-                    (int) slider.getValue(),
-                    1
+            Reservation reservation = new Reservation(Date.valueOf(DateDeb.getValue()),
+                    Date.valueOf(DateFin.getValue()),
+                    (int) slider.getValue(), 1 //should get id offre from formular
+                    ,1 //should get id user from formular
             );
             serviceReservation.add(reservation);
             System.out.println("Reservation added successfully.");
@@ -111,8 +112,8 @@ public class ReservationController {
                     // Update reservation details (in a real application, you would have a UI for this).
                     reservation = new Reservation(Date.valueOf(DateDeb.getValue()),
                             Date.valueOf(DateFin.getValue()),
-                            (int) slider.getValue(),
-                            1
+                            (int) slider.getValue(),1 //should get id offre from formular
+                            ,1 //should get id user from formular
                     );
 
                     serviceReservation.update(reservation);
@@ -132,10 +133,7 @@ public class ReservationController {
         try {
             reservationsList.clear();
             ArrayList<Reservation> allReservations = serviceReservation.readAll();
-            reservationsList.addAll(allReservations.stream().map(
-                    reservation -> new Reservation(reservation.getId(),reservation.getDateDebut(),
-                            reservation.getDateFin(),reservation.getNombrePassages(),reservation.getOffre())
-            ).collect(Collectors.toList()));
+            reservationsList.addAll(allReservations);
 
             // Update the ListView with the reservations
             reservationsListView.setItems(reservationsList);
@@ -152,34 +150,34 @@ public class ReservationController {
             showAlert("No Item Selected", "Please select a reservation to display.");
         } else {
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("reservation-details.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/journeywisefinal/reservation-details.fxml"));
                 Parent root = fxmlLoader.load();
 
-//                idLabel.setText(String.valueOf(selectedReservation.getId()));
-//                dateDebutLabel.setText(selectedReservation.getDateDebut().toString());
-//                dateFinLabel.setText(selectedReservation.getDateFin().toString());
-//                nbrPassLabel.setText(String.valueOf(selectedReservation.getNombrePassages()));
-//                idOffreLabel.setText(String.valueOf(selectedReservation.getOffre()));
-//
-//                Offres o = new Offres(1, "Turkey", "Istambul", "xxxx",
-//                        "10-09-2023", 1852.8f);
-//                paysLabel.setText(o.getPays());
-//                    citeLabel.setText(o.getCite());
-//                    lieuLabel.setText(o.getLieu());
-//                    dateOffreLabel.setText(o.getDate());
-//                    prixLabel.setText(String.valueOf(o.getPrix()));
-//                try {
-//                    o = new ServiceOffre().get(selectedReservation.getOffre());
-//                    paysLabel.setText(o.getPays());
-//                    citeLabel.setText(o.getCite());
-//                    lieuLabel.setText(o.getLieu());
-//                    dateOffreLabel.setText(o.getDate());
-//                    prixLabel.setText(String.valueOf(o.getPrix()));
-//                } catch (SQLException e) {
-//                    System.out.println(e);
-//                    showAlert("Error", "Error retrieving Offres details.");
-//                    return;
-//                }
+                idLabel.setText(String.valueOf(selectedReservation.getId()));
+                dateDebutLabel.setText(selectedReservation.getDateDebut().toString());
+                dateFinLabel.setText(selectedReservation.getDateFin().toString());
+                nbrPassLabel.setText(String.valueOf(selectedReservation.getNombrePassages()));
+                idOffreLabel.setText(String.valueOf(selectedReservation.getOffre()));
+
+                Offres o = new Offres(1, "Turkey", "Istambul", "xxxx",
+                        LocalDate.parse("2018-12-27"), 1852.8f);
+                paysLabel.setText(o.getPays());
+                citeLabel.setText(o.getCite());
+                lieuLabel.setText(o.getLieu());
+                dateOffreLabel.setText(o.getDate().toString());
+                prixLabel.setText(String.valueOf(o.getPrix()));
+                try {
+                    o = new ServiceOffre().get(selectedReservation.getOffre());
+                    paysLabel.setText(o.getPays());
+                    citeLabel.setText(o.getCite());
+                    lieuLabel.setText(o.getLieu());
+                    dateOffreLabel.setText(o.getDate().toString());
+                    prixLabel.setText(String.valueOf(o.getPrix()));
+                } catch (SQLException e) {
+                    System.out.println(e);
+                    showAlert("Error", "Error retrieving Offres details.");
+                    return;
+                }
 
                 Stage detailsStage = new Stage();
                 detailsStage.setTitle("Reservation Details");
@@ -198,7 +196,7 @@ public class ReservationController {
     @FXML
     private void addWindow() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HomePage.class.getResource("reservation-add.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HomePage.class.getResource("/com/example/journeywisefinal/reservation-add.fxml"));
 
             // You can get the scene from the event source (the menu item that triggered the event)
             Scene currentScene = new Scene(fxmlLoader.load(), 550, 500);

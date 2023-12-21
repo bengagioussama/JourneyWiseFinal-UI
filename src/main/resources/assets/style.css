@@ -1,0 +1,118 @@
+/***************header style********************************/
+.button-style {
+    -fx-background-color: #7eb6d3;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 15px;
+    -fx-font-weight: 600;
+    -fx-padding: 10px;
+    -fx-border-radius: 15px;
+    -fx-background-radius:16px;
+    -fx-font-family: "Bookman Old Style";
+}
+
+.button-style:hover {
+    -fx-background-color: #f6a32e;
+}
+
+.button-style:pressed {
+    -fx-background-color: #cd5c5c;
+}
+
+.pane-style {
+    -fx-background-color: #bfd2ff;
+}
+/***************header style********************************/
+
+/***************page gestion journaux********************************/
+.button-addJournal {
+    -fx-background-color: #f6a32e;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 5px;
+}
+
+.button-addJournal:hover {
+    -fx-background-color: #7eb6d3;
+}
+.titleJournal {
+    -fx-font-size: 25;
+    -fx-font-weight: 900;
+    -fx-font-family: "Comic Sans MS";
+    -fx-margin-top: 0;
+}
+.titleJournal:hover{
+    -fx-text-fill: #d94f1c;
+    -fx-cursor: hand;
+}
+.offreJournal {
+    -fx-translate-y: -8;
+    -fx-font-family: "Comic Sans MS";
+    -fx-text-fill: rgba(0, 0, 0, 0.4);
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+}
+.descriptionJournal {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-wrap-text: true;
+    -fx-font-family: "Comic Sans MS";
+}
+
+
+/***************page gestion journaux********************************/
+
+/***************page form ajout journal********************************/
+.titre-page{
+    -fx-font-size: 17px;
+    -fx-font-weight: 900;
+    -fx-font-family: "Comic Sans MS";
+}
+.Sous-titre-page{
+    -fx-font-size: 17px;
+    -fx-font-weight: 300;
+    -fx-font-family: "Comic Sans MS";
+    -fx-text-fill: rgba(0, 0, 0, 0.4);
+}
+.label-form{
+    -fx-font-size: 15px;
+    -fx-font-weight: 700;
+    -fx-font-family: "Comic Sans MS";
+}
+.text-field{
+    -fx-font-size: 15px;
+    -fx-font-weight: 100;
+    -fx-font-family: "Comic Sans MS";
+    /*-fx-effect: dropshadow(three-pass-box, #AAAAAA, 3, 0, 0, 3);*/
+}
+.text-area{
+    -fx-font-size: 15px;
+    -fx-font-weight: 100;
+    -fx-font-family: "Comic Sans MS";
+}
+.button-importImages{
+    -fx-font-size: 17px;
+    -fx-font-weight: 600;
+    -fx-font-family: "Comic Sans MS";
+    -fx-text-fill: #D94F1C;
+    -fx-background-color: #ececec;
+    -fx-border-color: #a4a4a4;
+    -fx-border-radius: 0;
+    -fx-label-padding: 5px;
+}
+.button-addJournal_du_formulaire {
+    -fx-background-color: #d94f1c;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 20px;
+}
+
+.button-addJournal_du_formulaire:hover {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+}
+/***************page form ajout journal********************************/

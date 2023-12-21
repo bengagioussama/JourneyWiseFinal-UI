@@ -5,8 +5,10 @@ import com.example.journeywisefinal.Entities.Reclamation;
 import com.example.journeywisefinal.Entities.Reservation;
 import com.example.journeywisefinal.Services.ServiceReclamation;
 import com.example.journeywisefinal.Services.ServiceReservation;
+import com.example.journeywisefinal.Utils.DataSource;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -21,6 +23,9 @@ import java.util.Collection;
 import java.util.ResourceBundle;
 
 public class ReclamationController implements Initializable {
+
+    @FXML
+    private static ReclamationController reclamationController;
 
 
     @FXML
@@ -57,9 +62,32 @@ public class ReclamationController implements Initializable {
             Reclamation reclamation = new Reclamation(date, subjectReclamation.getText(),problemDescription.getText() , Etat.PENDING);
             ServiceReclamation serviceReclamation = new ServiceReclamation();
             serviceReclamation.add(reclamation);
+
+            showAlert(Alert.AlertType.INFORMATION, "Congratulations", "Reclamation Envoyée!.");
+
         }
         catch (Exception e) {
             System.out.println(e);
         }
     }
+
+    public static ReclamationController getInstance() {
+        if (reclamationController == null)
+            reclamationController = new ReclamationController();
+        return reclamationController;
+    }
+    private void showAlert(Alert.AlertType alertType, String title, String contentText) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(contentText);
+        alert.showAndWait();
+    }
+    private void clearFields(){
+
+        subjectReclamation.clear();
+        problemDescription.clear();
+
+    }
+
 }

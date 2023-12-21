@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1350.0" style="-fx-background-color: #14242B;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.journeywisefinal.Controllers.ReservationConsultController">
+    <children>
+        <VBox alignment="TOP_CENTER" prefHeight="700.0" prefWidth="1389.0">
+            <children>
+                <Label text="Consulter toutes Les Offres." textFill="WHITE">
+                    <font>
+                        <Font name="Bell MT" size="37.0" />
+                    </font>
+                    <padding>
+                        <Insets top="50.0" />
+                    </padding>
+                </Label>
+                <TableView fx:id="tableView" prefHeight="200.0" prefWidth="693.0">
+                    <columns>
+                        <TableColumn fx:id="idColumn" prefWidth="61.19999539852142" text="ID" />
+                        <TableColumn fx:id="dateDebut" prefWidth="104.20001983642578" text="Date Debut" />
+                        <TableColumn fx:id="dateFin" prefWidth="115.0" text="Date Fin" />
+                        <TableColumn fx:id="nombrePassages" minWidth="0.0" prefWidth="154.60003662109375" text="Nombre Passages" />
+                        <TableColumn fx:id="idOffre" minWidth="0.0" prefWidth="112.59994506835938" text="ID Offre" />
+                        <TableColumn fx:id="idUser" minWidth="0.0" prefWidth="194.79998779296875" text="ID User" />
+                        <TableColumn fx:id="supprimer" prefWidth="110.00006103515625" text="Supprimer" />
+                    </columns>
+                    <VBox.margin>
+                        <Insets left="250.0" right="250.0" top="30.0" />
+                    </VBox.margin>
+                </TableView>
+            </children>
+        </VBox>
+    </children>
+
+    <opaqueInsets>
+        <Insets />
+    </opaqueInsets>
+</HBox>

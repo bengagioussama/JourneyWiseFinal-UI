@@ -27,7 +27,7 @@
                 <TableColumn fx:id="idColumn" prefWidth="61.19999539852142" text="ID" />
                 <TableColumn fx:id="dateColumn" prefWidth="110.40003204345703" text="Date Reclamation" />
                   <TableColumn fx:id="objetColumn" prefWidth="174.0" text="Objet" />
-                  <TableColumn prefWidth="265.9999694824219" text="Description" />
+                  <TableColumn fx:id="Description" prefWidth="265.9999694824219" text="Description" />
                   <TableColumn fx:id="etatColumn" prefWidth="110.0" text="Etat" />
                   <TableColumn fx:id="deleteColumn" prefWidth="128.39996337890625" text="Annuler" />
               </columns>
@@ -43,6 +43,7 @@
          </children>
       </VBox>
    </children>
+
    <opaqueInsets>
       <Insets />
    </opaqueInsets>

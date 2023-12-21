@@ -75,8 +75,9 @@ public class ServiceUser implements IService<User> {
                 String lastName = (res.getString(3));
                 String email = (res.getString(4));
                 String pwd  = (res.getString(5));
+                String role = (res.getString(6));
 
-                User u = new User((int) id,firstName,lastName,email,pwd);
+                User u = new User((int) id,firstName,lastName,email,pwd,role);
                 list.add(u);
             }
         }
@@ -96,7 +97,8 @@ public class ServiceUser implements IService<User> {
             String lastName = res.getString("lastName");
             String email = res.getString("email");
             String pwd = res.getString("password");
-            return new User(id, firstName, lastName, email, pwd);
+            String role = res.getString("role");
+            return new User(id, firstName, lastName, email, pwd,role);
         }
         return null;    }
 }

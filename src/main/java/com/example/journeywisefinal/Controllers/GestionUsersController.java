@@ -4,8 +4,13 @@ import com.example.journeywisefinal.Entities.User;
 import com.example.journeywisefinal.Services.ServiceUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -62,7 +67,7 @@ public class GestionUsersController {
         email=emailTxt.getText();
         password=passwordTxt.getText();
         role="user";
-        User newUser=new User(0,firstName,lastName,email,password);
+        User newUser=new User(0,firstName,lastName,email,password,role);
         try{
             serviceUser.add(newUser);
             table();
@@ -96,22 +101,9 @@ public class GestionUsersController {
 
 
 
-    public void Connect()
-    {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/journey_wise","root","");
-        } catch (ClassNotFoundException ex) {
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
-    public void initialize(URL url, ResourceBundle rb) {
-        Connect();
-    }
     public void table(){
-        Connect();
+
         //ObservableList<User> users = FXCollections.observableList();
         try {
             serviceUser.readAll();
@@ -127,5 +119,6 @@ public class GestionUsersController {
             System.out.println(ex);
         }
     }
+
 
 }

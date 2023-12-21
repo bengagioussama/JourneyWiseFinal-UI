@@ -8,12 +8,13 @@ public class User {
     private String pwd;
     private String role;
 
-    public User(int id, String firstName, String lastName, String email, String pwd) {
+    public User(int id, String firstName, String lastName, String email, String pwd,String role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.pwd = pwd;
+        this.role = role;
     }
 
     public int getId() {

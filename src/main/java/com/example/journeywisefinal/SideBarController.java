@@ -1,5 +1,6 @@
 package com.example.journeywisefinal;
 
+import com.example.journeywisefinal.Utils.DataSource;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,6 +22,7 @@ public class SideBarController implements Initializable {
     @FXML
     private AnchorPane ap;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -34,12 +36,16 @@ public class SideBarController implements Initializable {
     }
 
     public void Journal(javafx.scene.input.MouseEvent mouseEvent) {
-        loadPage("Journal");
+        loadPage("/com/example/journeywisefinal/GererJournal");
     }
 
 
     public void Offres(javafx.scene.input.MouseEvent mouseEvent) {
-        loadPage("Offres");
+        loadPage("/com/example/journeywisefinal/Offre-Consult");
+    }
+
+    public void Reservation(javafx.scene.input.MouseEvent mouseEvent) {
+        loadPage("/com/example/journeywisefinal/Reservation");
     }
 
     public void Reclamation(javafx.scene.input.MouseEvent mouseEvent) {
@@ -48,10 +54,10 @@ public class SideBarController implements Initializable {
 
 
     public void Login(javafx.scene.input.MouseEvent mouseEvent) {
-        loadPage("Login-SignUp");
+        loadPage("/com/example/journeywisefinal/Login-SignUp");
     }
 
-    private void loadPage(String page) {
+    public void loadPage(String page) {
         Parent root  = null;
 
         try {
@@ -62,6 +68,17 @@ public class SideBarController implements Initializable {
         }
         bp.setCenter(root);
     }
+
+
+
+    public BorderPane getBorderPane() {
+        return bp;
+    }
+
+    public AnchorPane getContentPane() {
+        return ap;
+    }
+
 
 
 }

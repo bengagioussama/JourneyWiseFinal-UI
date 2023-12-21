@@ -6,24 +6,26 @@ public class Reservation {
     private int id;
     private Date dateDebut,dateFin;
     private int nombrePassages;
-    private int offre;
-    // private User user;
+    private int idOffre;
+    private int idUser;
 
-    public Reservation(int id, Date dateDebut, Date dateFin, int nombrePassages, int offre) {//,User user) {
+    public Reservation(int id, Date dateDebut, Date dateFin, int nombrePassages, int idOffre, int user) {
         this.id = id;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.nombrePassages = nombrePassages;
-        this.offre = offre;
-        //  this.user = user;
+        this.idOffre = idOffre;
+        this.idUser = user;
     }
 
-    public Reservation(Date dateDebut, Date dateFin, int value, int offres) {
+    public Reservation(Date dateDebut, Date dateFin, int nombrePassages, int idOffre, int user) {
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
-        this.nombrePassages = value;
-        this.offre = offres;
+        this.nombrePassages = nombrePassages;
+        this.idOffre = idOffre;
+        this.idUser = user;
     }
+
 
     public int getId() {
         return id;
@@ -58,20 +60,20 @@ public class Reservation {
     }
 
     public int getOffre() {
-        return offre;
+        return idOffre;
     }
 
-    public void setOffre(int offre) {
-        this.offre = offre;
+    public void setOffre(int idOffre) {
+        this.idOffre = idOffre;
     }
 
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
 
     @Override
     public String toString() {
@@ -80,8 +82,8 @@ public class Reservation {
                 ", dateDebut='" + dateDebut + '\'' +
                 ", dateFin='" + dateFin + '\'' +
                 ", nombrePassages=" + nombrePassages +
-                ", offre='" + offre + '\'' +
-                // ", user=" + user +
+                ", id_offre='" + idOffre + '\'' +
+                ", id_user=" + idUser +
                 '}';
     }
 }

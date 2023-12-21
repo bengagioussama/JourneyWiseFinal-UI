@@ -10,6 +10,8 @@ module com.example.journeywisefinal {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires java.sql;
+    requires de.jensd.fx.glyphs.fontawesome;
+
 
     opens com.example.journeywisefinal to javafx.fxml;
     exports com.example.journeywisefinal;

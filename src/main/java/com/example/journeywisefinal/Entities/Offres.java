@@ -1,18 +1,20 @@
 package com.example.journeywisefinal.Entities;
 
 
+import java.time.LocalDate;
+
 public class Offres {
     private int id_offre;
     public String pays;
     public String cite;
     public String lieu;
-    public String date;
+    public LocalDate date;
     public float prix;
 
     public Offres(){}
 
 
-    public Offres(int id_offre, String pays, String cite, String lieu, String date, float prix) {
+    public Offres(int id_offre, String pays, String cite, String lieu, LocalDate date, float prix) {
         this.id_offre= id_offre;
         this.pays = pays;
         this.cite = cite;
@@ -20,6 +22,15 @@ public class Offres {
         this.date = date;
         this.prix = prix;
     }
+
+    public Offres(String pays, String cite, String lieu, LocalDate date, float prix) {
+        this.pays = pays;
+        this.cite = cite;
+        this.lieu = lieu;
+        this.date = date;
+        this.prix = prix;
+    }
+
     public int getId_offre() {
         return id_offre;
     }
@@ -52,11 +63,11 @@ public class Offres {
         this.lieu = lieu;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(  String  date) {
+    public void setDate(  LocalDate  date) {
         this.date = date;
     }
 

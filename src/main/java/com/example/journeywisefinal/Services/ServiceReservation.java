@@ -1,5 +1,6 @@
 package com.example.journeywisefinal.Services;
 
+
 import com.example.journeywisefinal.Entities.Reservation;
 import com.example.journeywisefinal.Utils.DataSource;
 
@@ -10,8 +11,6 @@ import java.util.Date;
 public class ServiceReservation implements IService<Reservation> {
     private Connection connection = DataSource.getInstance().getCon();
     private Statement statement;
-
-    private ServiceOffre serviceOffre = new ServiceOffre();
     public ServiceReservation(){
         try {
             statement= connection.createStatement();
@@ -30,14 +29,14 @@ public class ServiceReservation implements IService<Reservation> {
             preparedStatement.setInt(5, 0);
 
             int res = preparedStatement.executeUpdate();
-            System.out.println("Number of tuples added: " + res);
+            System.out.println("Reservation added");
         }
     }
 
 
     @Override
     public void update(Reservation t) throws SQLException {
-        if (get(t.getId()) != null) {
+        if (t.getId() != 0) {
             String query = "UPDATE reservations " +
                     "SET dateDebut = ?," +
                     "dateFin = ?," +
@@ -50,7 +49,7 @@ public class ServiceReservation implements IService<Reservation> {
                 preparedStatement.setDate(2, new java.sql.Date(t.getDateFin().getTime()));
                 preparedStatement.setInt(3, t.getNombrePassages());
                 preparedStatement.setInt(4, t.getOffre());
-                preparedStatement.setInt(5, t.getOffre());
+                preparedStatement.setInt(5, 1);
                 preparedStatement.setInt(6, t.getId());
 
                 int res = preparedStatement.executeUpdate();
@@ -81,20 +80,15 @@ public class ServiceReservation implements IService<Reservation> {
     public ArrayList<Reservation> readAll() throws SQLException {
         ArrayList<Reservation>reservations = new ArrayList<>();
         try {
-            System.out.println("REAL ALL HERE");
             ResultSet resultSet = statement.executeQuery("select * from reservations");
             while (resultSet.next()){
-                System.out.println("inside the while loop");
-                long id=resultSet.getInt(1);
-                System.out.println("EXCEPTION UNDER");
+                int id=resultSet.getInt(1);
                 Date dateDebut = resultSet.getDate(2);
                 Date dateFin= resultSet.getDate(3);
                 int nombrePassages = resultSet.getInt(4);
-                System.out.println("EXCEPTION STILL UNDER");
-                int offre = (serviceOffre.get(resultSet.getInt(5)).getId_offre());
-                System.out.println("EXXXXXXXXXXX");
-                //int id_membre=resultSet.getInt(6);
-                reservations.add(new Reservation((int) id, dateDebut, dateFin, nombrePassages,offre ));//id_membre));
+                int idOffre = resultSet.getInt(5);
+                int id_membre=resultSet.getInt(6);
+                reservations.add(new Reservation(id, dateDebut, dateFin, nombrePassages,idOffre, id_membre));
             }
         }catch (SQLException ex){
             System.out.println(ex);
@@ -110,9 +104,9 @@ public class ServiceReservation implements IService<Reservation> {
                 Date dateDebut = resultSet.getDate(2);
                 Date dateFin= resultSet.getDate(3);
                 int nombrePassages = resultSet.getInt(4);
-                int offre = (serviceOffre.get(1).getId_offre());
+                int idOffre = resultSet.getInt(5);
                 int id_membre=resultSet.getInt(6);
-                reservations.add(new Reservation(id, dateDebut, dateFin, nombrePassages, offre));//serviceOffre.get(id_offre)));//,id_membre));
+                reservations.add(new Reservation(id, dateDebut, dateFin, nombrePassages, idOffre,id_membre));
             }
         }catch (SQLException ex){
             System.out.println(ex);
@@ -129,10 +123,10 @@ public class ServiceReservation implements IService<Reservation> {
                 Date dateDebut = resultSet.getDate(2);
                 Date dateFin = resultSet.getDate(3);
                 int nombrePassages = resultSet.getInt(4);
-                int offre = (serviceOffre.get(1).getId_offre());
-                // User user = resultSet.getInt(6); // a refaire
+                int idOffre = resultSet.getInt(5);
+                int user = resultSet.getInt(6); // a refaire
 
-                return new Reservation(id, dateDebut, dateFin, nombrePassages, offre);//,user);
+                return new Reservation(id, dateDebut, dateFin, nombrePassages, idOffre,user);
             } else {
                 System.out.println("No reservation found with ID: " + idR);
             }

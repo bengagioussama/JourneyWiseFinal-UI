@@ -12,7 +12,7 @@ public class  DeleteButtonCell extends TableCell<Reclamation, Void> {
     private final Button deleteButton;
 
     public DeleteButtonCell() {
-        deleteButton = new Button("Delete");
+        deleteButton = new Button("Supprimer");
         deleteButton.setOnAction(event -> {
             Reclamation reclamation = getTableView().getItems().get(getIndex());
             ServiceReclamation serviceReclamation = new ServiceReclamation();
